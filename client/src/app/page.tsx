@@ -7,10 +7,10 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/users")
+    fetch("/accounts")
       .then((res) => res.json())
       .then((data) => {
-        setMessage(data.users);
+        setMessage(data[0].country);
         setLoading(false);
       });
   }, []);
