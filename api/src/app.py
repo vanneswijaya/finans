@@ -1,6 +1,8 @@
-from flask import Flask, jsonify
+from flask import jsonify
+import os
+from . import create_app
 
-app = Flask(__name__)
+app = create_app(os.getenv("CONFIG_MODE"))
 
 usersList = ['Aaron', 'Bianca', 'Cat', 'Danny', 'Elena']
 
@@ -21,6 +23,8 @@ def getUserByName(name):
 def addUserByName(name):
     usersList.append(name)
     return jsonify({ 'message': 'New user added'  })
+
+from .accounts import urls
 
 if __name__ == "__main__":
     app.run()
