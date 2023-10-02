@@ -1,6 +1,5 @@
 from sqlalchemy import inspect
 from datetime import datetime
-from flask_validator import ValidateEmail, ValidateString, ValidateCountry
 from sqlalchemy.orm import validates
 
 from .. import db # from __init__.py
@@ -20,15 +19,6 @@ class Account(db.Model):
     dob          = db.Column(db.Date)
     country      = db.Column(db.String(100))
     phone_number = db.Column(db.String(20))
-
-
-# Validations => https://flask-validator.readthedocs.io/en/latest/index.html
-    @classmethod
-    def __declare_last__(cls):
-        ValidateEmail(Account.email, True, True, "The email is not valid. Please check it") # True => Allow internationalized addresses, True => Check domain name resolution.
-        ValidateString(Account.username, True, True, "The username type must be string")
-        ValidateCountry(Account.country, True, True, "The country is not valid")
-
 
 # Set an empty string to null for username field => https://stackoverflow.com/a/57294872
     @validates('username')

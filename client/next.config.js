@@ -3,7 +3,8 @@ module.exports = () => {
     return [
       {
         source: "/:path*",
-        destination: "http://localhost:5000/:path*",
+        destination:
+          "http://finans-api-env.eba-rkbmdhu4.us-west-2.elasticbeanstalk.com/:path*",
       },
     ];
   };
